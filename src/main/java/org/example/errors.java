@@ -17,51 +17,55 @@ public class errors {
         driver.get("https://automation.co.il/tutorials/selenium/demo1/indexID.html");
         //ממלאים פרטים עם שגיאות
         driver.findElement(By.id("firstname")).sendKeys("chaya");
-        driver.findElement(By.id("lastname")).sendKeys("kerbel");
-        driver.findElement(By.id("email")).sendKeys("ch!@bvbh");
+        driver.findElement(By.id("lastname")).sendKeys("ke");
+        driver.findElement(By.id("email")).sendKeys("ch!");
         driver.findElement(By.id("next")).click();
-
-//        String err1=driver.findElement(By.id("lastname-error")).getText();
-//        if (err1.equals("Please enter at least 3 characters.")){
-//            System.out.println("ההודעה תקינה");
-//        }
-//        else {
-//            System.out.println("ההודעה אינה תקינה");
-//        }
-//
-//
-//        String err2=driver.findElement(By.id("email-error")).getText();
-//        if (err2.equals("Please enter a valid email address.")){
-//            System.out.println("ההודעה תקינה");
-//        }
-//        else {
-//            System.out.println("ההודעה אינה תקינה");
-//        }
+        //לוודא שמופיעה הודעת שגיאה נכונה
+        String err1=driver.findElement(By.id("lastname-error")).getText();
+        if (err1.equals("Please enter at least 3 characters.")){
+            System.out.println("ההודעה תקינה");
+        }
+        else {
+            System.out.println("ההודעה אינה תקינה");
+        }
 
 
+        String err2=driver.findElement(By.id("email-error")).getText();
+        if (err2.equals("Please enter a valid email address.")){
+            System.out.println("ההודעה תקינה");
+        }
+        else {
+            System.out.println("ההודעה אינה תקינה");
+        }
+
+
+        //למלא פרטים נכונים
+        driver.findElement(By.id("firstname")).sendKeys("chaya");
+        driver.findElement(By.id("lastname")).sendKeys("kerbel");
+        driver.findElement(By.id("email")).sendKeys("ch@ke.com");
+        driver.findElement(By.id("next")).click();
         //לוודא שהגענו לטאב השני
+        String tub2=driver.findElement(By.className("moving-tab")).getText();
+        if (tub2.equals("Account")){
+            System.out.println("לא הגעת לטאב השני:)");
+        }
+        else {
+            System.out.println("הגעת לטאב השני:(");
+        }
+
+        //לבחור לבל
         driver.findElement(By.id("Beginner")).click();
         driver.findElement(By.id("next")).click();
-//        String tub2=driver.findElement(By.className("moving-tab")).getText();
-//        if (tub2.equals("Account")){
-//            System.out.println("לא הגעת לטאב השני:)");
-//        }
-//        else {
-//            System.out.println("הגעת לטאב השני:(");
-//        }
 
 
-
-
-
-//        //לבחור לבל
-
+        //למלא פרטים..
         driver.findElement(By.id("streetname")).sendKeys("chazon david");
         driver.findElement(By.id("streetnumber")).sendKeys("7");
         driver.findElement(By.id("city")).sendKeys("modiyin elit");
         driver.findElement(By.id("country")).sendKeys("israel");
         driver.findElement(By.id("finish")).click();
 
+        //לוודא שמופיעה הודעה על סיום
         String mess1=driver.findElement(By.className("cta-title")).getText();
         if (mess1.equals("הטופס הזה הוא רק טופס דוגמה")){
             System.out.println("סיימת!");
